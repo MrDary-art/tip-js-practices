@@ -7,13 +7,14 @@ export const demoTasks = [
   { id: 10, title: "Оформить README", completed: true, priority: "medium" },
 ];
 
-// Вариант 1: подготовка учебного проекта. Изначально выполнено 0 задач.
-export const variantNumber = 1;
+// Вариант 6: проверка пользовательского интерфейса. Номер в журнале — 22.
+// По методичке изначально выполнены первые пять задач.
+export const variantNumber = 6;
 export const variantTasks = [
-  { id: 11, title: "Определить тему учебного проекта", completed: false, priority: "high" },
-  { id: 23, title: "Составить план работы", completed: false, priority: "medium" },
-  { id: 37, title: "Подобрать учебные материалы", completed: false, priority: "low" },
-  { id: 41, title: "Подготовить структуру проекта", completed: false, priority: "high" },
-  { id: 58, title: "Реализовать основные функции", completed: false, priority: "medium" },
-  { id: 64, title: "Оформить отчёт по проекту", completed: false, priority: "low" },
+  { id: 11, title: "Проверить навигацию интерфейса", completed: true, priority: "high" },
+  { id: 23, title: "Проверить поля формы", completed: true, priority: "medium" },
+  { id: 37, title: "Проверить сообщения об ошибках", completed: true, priority: "low" },
+  { id: 41, title: "Проверить адаптивность страницы", completed: true, priority: "high" },
+  { id: 58, title: "Проверить управление с клавиатуры", completed: true, priority: "medium" },
+  { id: 64, title: "Оформить отчёт о проверке интерфейса", completed: false, priority: "low" },
 ];
