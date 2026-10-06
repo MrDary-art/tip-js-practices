@@ -403,13 +403,16 @@ check("38. Цепочка обновлений сохраняет все пре�
   assert.notEqual(third, second);
 });
 
-check("39. Вариант 1: данные, промежуточные сводки и отказ без мутации", () => {
-  assert.equal(variantNumber, 1);
+check("39. Вариант 6: данные, промежуточные сводки и отказ без мутации", () => {
+  assert.equal(variantNumber, ((22 - 1) % 8) + 1);
   assert.deepEqual(variantTasks.map((task) => task.id), [11, 23, 37, 41, 58, 64]);
+  assert.deepEqual(variantTasks.map((task) => task.completed), [true, true, true, true, true, false]);
   assert.deepEqual([...new Set(variantTasks.map((task) => task.priority))].sort(),
     ["high", "low", "medium"]);
   for (const task of variantTasks) {
-    assert.deepEqual(task, expectTask(createTask(task.id, task.title, task.priority)));
+    assert.deepEqual(task, {
+      ...expectTask(createTask(task.id, task.title, task.priority)), completed: task.completed,
+    });
   }
   const before = copyTasks(variantTasks);
   const initial = Object.freeze(copyTasks(variantTasks).map((task) => Object.freeze(task)));
@@ -421,25 +424,25 @@ check("39. Вариант 1: данные, промежуточные сводк
     assert.equal(stats.progress.toFixed(1), displayedProgress);
   }
 
-  expectStats(6, 0, 6, "0.0");
-  current = expectTasks(addTask(current, 80, "Подготовить демонстрацию проекта", "high"));
-  expectStats(7, 0, 7, "0.0");
+  expectStats(6, 5, 1, "83.3");
+  current = expectTasks(addTask(current, 80, "Проверить подсказки интерфейса", "low"));
+  expectStats(7, 5, 2, "71.4");
   current = expectTasks(setTaskCompleted(current, 11, true));
-  expectStats(7, 1, 6, "14.3");
-  current = expectTasks(renameTask(current, 23, "Составить подробный план учебного проекта"));
-  expectStats(7, 1, 6, "14.3");
+  expectStats(7, 5, 2, "71.4");
+  current = expectTasks(renameTask(current, 23, "Проверить обязательные поля формы"));
+  expectStats(7, 5, 2, "71.4");
   assert.deepEqual(findTaskById(current, 23), {
-    ...findTaskById(initial, 23), title: "Составить подробный план учебного проекта",
+    ...findTaskById(initial, 23), title: "Проверить обязательные поля формы",
   });
   current = expectTasks(removeTask(current, 37));
-  expectStats(6, 1, 5, "16.7");
+  expectStats(6, 4, 2, "66.7");
   const beforeFailure = copyTasks(current);
-  expectFailure(addTask(current, 80, "Повторная задача", "high"));
+  expectFailure(addTask(current, 80, "Повторная задача", "low"));
   assert.deepEqual(current, beforeFailure);
   assert.deepEqual(current.map((task) => task.id), [11, 23, 41, 58, 64, 80]);
   assert.deepEqual(findTaskById(current, 11), { ...initial[0], completed: true });
   assert.deepEqual(findTaskById(current, 80), {
-    id: 80, title: "Подготовить демонстрацию проекта", completed: false, priority: "high",
+    id: 80, title: "Проверить подсказки интерфейса", completed: false, priority: "low",
   });
   assert.deepEqual(initial, before);
   assert.deepEqual(variantTasks, before);

@@ -77,12 +77,12 @@ runScenario("Общий сценарий", demoTasks, {
   removeId: 7,
 });
 
-runScenario(`Индивидуальный вариант ${variantNumber}: подготовка учебного проекта`, variantTasks, {
+runScenario(`Индивидуальный вариант ${variantNumber}: проверка пользовательского интерфейса`, variantTasks, {
   newId: 80,
-  newTitle: "Подготовить демонстрацию проекта",
-  newPriority: "high",
+  newTitle: "Проверить подсказки интерфейса",
+  newPriority: "low",
   completeId: 11,
   renameId: 23,
-  renamedTitle: "Составить подробный план учебного проекта",
+  renamedTitle: "Проверить обязательные поля формы",
   removeId: 37,
 });
