@@ -1,9 +1,9 @@
 "use strict";
 
-// Вариант 1. Для проверки других случаев измените эти три значения.
-const totalTasks = 12;
-const completedTasks = 5;
-const dailyLimit = 3;
+// Вариант 6: номер в журнале 22, ((22 - 1) % 8) + 1 = 6.
+const totalTasks = 18;
+const completedTasks = 6;
+const dailyLimit = 5;
 
 if (typeof totalTasks !== "number" || typeof completedTasks !== "number") {
   console.log("Ошибка: количество задач должно быть задано числами.");
